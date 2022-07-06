@@ -4,5 +4,17 @@
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// Helpers
+@import 'helpers';
+
+// Tailwind
+@import '~tailwindcss/tailwind.css';
+
+@import "components/header";
+
+body {
+    background: $bg-color;
+    color: white;
+    margin: 0;
+    font-family: $font-family-sans-serif;
+}
