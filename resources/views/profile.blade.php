@@ -48,6 +48,19 @@
                 <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Your Beats</h1>
                 <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Manage Your Beats: Upload, Edit, or Delete Your Audio Creations</p>
             </div>
+            <div class="flex flex-wrap -m-2 text-center">
+                <div class="p-2 mb-10 w-full">
+                    <div class="h-full flex items-center border-red-800 border p-4 rounded-lg">
+                        <div class="flex-grow">
+                            <h2 class="text-white title-font font-medium mb-8 text-xl">Upload a Beat</h2>
+                            <a href="#" class="text-red-600">Click here</a>
+                            <svg class="h-8 w-8 text-red-600 ml-auto"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 17a5 5 0 01-.916-9.916 5.002 5.002 0 019.832 0A5.002 5.002 0 0116 17m-7-5l3-3m0 0l3 3m-3-3v12"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="flex flex-wrap -m-2">
                 <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
                     <div class="h-full flex items-center border-red-800 border p-4 rounded-lg">

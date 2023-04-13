@@ -21,11 +21,14 @@
         @if(Auth::user())
             <div>
                 {{-- <a href="{{ route('upload') }}"> --}}
-                <button class="px-6 py-2 font-bold">Upload</button>
+                <button class="px-6 py-2 font-bold hover:text-red-600">Upload</button>
                 {{-- </a> --}}
                <a href="{{ route('profile') }}">
-                    <button class="px-6 py-2 font-bold rounded-md text-red-500 text-red-600">My Profile</button>
+                    <button class="px-6 py-2 font-bold rounded-md text-red-500 text-red-600 hover:text-white">My Profile</button>
                </a>
+                {{--<a href="{{ route('cart') }}">--}}
+                <i class="px-6 py-2 fa-solid fa-cart-shopping border-1 cursor-pointer hover:text-red-600"></i>
+                {{-- </a> --}}
             </div>
             <div class="relative hidden md:block">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
