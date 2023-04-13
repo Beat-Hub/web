@@ -1,12 +1,100 @@
 @extends('layouts.app')
 
+@section('body')
+
 @section('content')
 
     <div class="p-6">
         <h1 class="text-4xl font-bold mb-6">Find your perfect beat, created by the community!</h1>
-        <p class="text-lg mb-6">Welcome to our beat marketplace! Our platform is designed to connect beat makers with beat lovers who are looking for unique and high-quality beats. Our beats are all created by talented users who have a passion for music and a knack for producing amazing beats.</p>
-        <p class="text-lg mb-6">Whether you're a rapper, singer, or just a music enthusiast, you'll find the perfect beat to suit your style and take your music to the next level. We offer a wide variety of beats in different genres and styles, so you're sure to find something that fits your vibe.</p>
-        <p class="text-lg mb-6">Our beats are affordable, easy to purchase, and ready to be used in your next project. Browse our collection today and find the beat that speaks to you!</p>
     </div>
+    <section class="text-red-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-wrap -m-4">
+                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                    <a class="block relative h-48 rounded overflow-hidden">
+                        <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/420x260">
+                    </a>
+                    <div class="mt-4">
+                        <h3 class="text-red-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                        <h2 class="text-red-900 title-font text-lg font-medium">The Catalyzer</h2>
+                        <p class="mt-1">$16.00</p>
+                    </div>
+                </div>
+                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                    <a class="block relative h-48 rounded overflow-hidden">
+                        <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/421x261">
+                    </a>
+                    <div class="mt-4">
+                        <h3 class="text-red-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                        <h2 class="text-red-900 title-font text-lg font-medium">Shooting Stars</h2>
+                        <p class="mt-1">$21.15</p>
+                    </div>
+                </div>
+                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                    <a class="block relative h-48 rounded overflow-hidden">
+                        <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/422x262">
+                    </a>
+                    <div class="mt-4">
+                        <h3 class="text-red-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                        <h2 class="text-red-900 title-font text-lg font-medium">Neptune</h2>
+                        <p class="mt-1">$12.00</p>
+                    </div>
+                </div>
+                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                    <a class="block relative h-48 rounded overflow-hidden">
+                        <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/423x263">
+                    </a>
+                    <div class="mt-4">
+                        <h3 class="text-red-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                        <h2 class="text-red-900 title-font text-lg font-medium">The 400 Blows</h2>
+                        <p class="mt-1">$18.40</p>
+                    </div>
+                </div>
+                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                    <a class="block relative h-48 rounded overflow-hidden">
+                        <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/424x264">
+                    </a>
+                    <div class="mt-4">
+                        <h3 class="text-red-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                        <h2 class="text-red-900 title-font text-lg font-medium">The Catalyzer</h2>
+                        <p class="mt-1">$16.00</p>
+                    </div>
+                </div>
+                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                    <a class="block relative h-48 rounded overflow-hidden">
+                        <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/425x265">
+                    </a>
+                    <div class="mt-4">
+                        <h3 class="text-red-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                        <h2 class="text-red-900 title-font text-lg font-medium">Shooting Stars</h2>
+                        <p class="mt-1">$21.15</p>
+                    </div>
+                </div>
+                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                    <a class="block relative h-48 rounded overflow-hidden">
+                        <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/427x267">
+                    </a>
+                    <div class="mt-4">
+                        <h3 class="text-red-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                        <h2 class="text-red-900 title-font text-lg font-medium">Neptune</h2>
+                        <p class="mt-1">$12.00</p>
+                    </div>
+                </div>
+                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                    <a class="block relative h-48 rounded overflow-hidden">
+                        <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/428x268">
+                    </a>
+                    <div class="mt-4">
+                        <h3 class="text-red-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                        <h2 class="text-red-900 title-font text-lg font-medium">The 400 Blows</h2>
+                        <p class="mt-1">$18.40</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection
 
+
+    @include('footer')
 @endsection

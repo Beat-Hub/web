@@ -15,7 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" /><body>
     <header class="bg-white bg-opacity-5 border-b-2 border-opacity-10 border-white p-6 w-full inline-flex justify-between items-center">
         <div class="logo text-3xl mx-8">Beat<span class="logo-contrast">Hub</span></div>
         @if(Auth::user())
@@ -41,6 +41,14 @@
                 @method('POST')
             </form>
         @else
+            <div>
+                {{--<a href="{{ route('open_for_business') }}">--}}
+                <button class="px-6 text-sm font-bold hover:text-red-600 py-2 hover:border border-solid border-red-600 rounded-md">Open for business</button>
+                {{-- </a> --}}
+               {{--<a href="{{ route('cart') }}">--}}
+                <i class="fa-solid fa-cart-shopping border-1" style="color: #ff0000;"></i>
+                {{-- </a> --}}
+            </div>
         <div>
             <a href="{{ route('login') }}">
                 <button class="px-6 py-2 bg-red-600 font-bold rounded-md">Login</button>
@@ -51,8 +59,12 @@
         </div>
         @endif
     </header>
-    <div class="p-10">
-        @yield('content')
-    </div>
+        <div class="p-10">
+            @yield('content')
+        </div>
+        <div>
+            @yield('footer')
+        </div>
+
 </body>
 </html>
