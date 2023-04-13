@@ -17,15 +17,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" /><body>
     <header class="bg-white bg-opacity-5 border-b-2 border-opacity-10 border-white p-6 w-full inline-flex justify-between items-center">
-        <div class="logo text-3xl mx-8">Beat<span class="logo-contrast">Hub</span></div>
+            <div class="logo text-3xl mx-8">Beat<span class="logo-contrast">Hub</span></div>
         @if(Auth::user())
             <div>
                 {{-- <a href="{{ route('upload') }}"> --}}
                 <button class="px-6 py-2 font-bold">Upload</button>
                 {{-- </a> --}}
-               {{--<a href="{{ route('profile') }}"> --}}
-                    <button class="px-6 py-2 font-bold rounded-md text-slate-500 text-red-600">My Profile</button>
-                {{-- </a> --}}
+               <a href="{{ route('profile') }}">
+                    <button class="px-6 py-2 font-bold rounded-md text-red-500 text-red-600">My Profile</button>
+               </a>
             </div>
             <div class="relative hidden md:block">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -43,10 +43,10 @@
         @else
             <div>
                 {{--<a href="{{ route('open_for_business') }}">--}}
-                <button class="px-6 text-sm font-bold hover:text-red-600 py-2 hover:border border-solid border-red-600 rounded-md">Open for business</button>
+                <button class="px-2 text-sm font-bold hover:text-red-600 py-2 ">Open for business</button>
                 {{-- </a> --}}
                {{--<a href="{{ route('cart') }}">--}}
-                <i class="fa-solid fa-cart-shopping border-1" style="color: #ff0000;"></i>
+                <i class="px-2 fa-solid fa-cart-shopping border-1 cursor-pointer hover:text-red-600"></i>
                 {{-- </a> --}}
             </div>
         <div>

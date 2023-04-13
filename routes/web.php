@@ -19,3 +19,5 @@ Route::get('/', [\App\Http\Controllers\IndexController::class, 'view']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::post('logout', [UserController::class, 'logout'])->name('logout');
+
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profile'])->name('profile');

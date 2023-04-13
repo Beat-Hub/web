@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
 @section('footer')
-    <footer class="text-red-600 body-fonts bg-white bg-opacity-5 border-b-2 border-opacity-10 border-white p-6 w-full items-center">
+    <footer class="text-white-600 body-fonts bg-white bg-opacity-5 border-b-2 border-opacity-10 border-white p-6 w-full items-center">
         <div class="container px-5 py-24 mx-auto">
             <div class="flex flex-wrap md:text-center text-center order-first">
                 <div class=" w-full px-4">
                     <h2 class="title-font font-medium text-red-600 tracking-widest text-lg mb-3">BeatHub</h2>
                     <nav class="list-none mb-5">
                         <li>
-                            <a class="transition-all duration-500 text-red-600 hover:text-red-500 cursor-pointer">About Us</a>
+                            <a class="transition-all duration-500 text-white-600 hover:text-red-500 cursor-pointer">About Us</a>
                         </li>
                         <li>
-                            <a class="transition-all duration-500 text-red-600 hover:text-red-500 cursor-pointer">Merch</a>
+                            <a class="transition-all duration-500 text-white-600 hover:text-red-500 cursor-pointer">Merch</a>
                         </li>
                         <li>
-                            <a class="hover:scale-125 transition-all duration-500 text-red-600 hover:text-red-500 cursor-pointer ">Blog</a>
+                            <a class="transition-all duration-500 text-white-600 hover:text-red-500 cursor-pointer ">Forum</a>
                         </li>
                     </nav>
                 </div>
@@ -55,3 +55,4 @@
         </div>
     </footer>
 @endsection
+
