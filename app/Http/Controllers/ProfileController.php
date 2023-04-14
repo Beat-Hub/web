@@ -13,6 +13,7 @@ class ProfileController
      */
     public function profile(): View
     {
-        return view('profile');
+        $user = auth()->user();
+        return view('profile', ['user' => $user]);
     }
 }

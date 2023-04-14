@@ -27,4 +27,10 @@ class UserController extends Controller
 
         return redirect('/');
     }
+    public function edit(): \Illuminate\View\View
+    {
+        $user = auth()->user();
+        return view('edit', ['user' => $user]);
+    }
+
 }

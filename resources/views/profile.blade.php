@@ -1,7 +1,16 @@
 @extends('layouts.app')
 @section('body')
     @section('content')
-    <section class=" body-font">
+        <header class="text-red-600 body-font">
+            <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+                <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+                    <a href="{{ route('edit') }}" class="mr-5 -mt-10 hover:text-red-500 cursor-pointer hover:underline">Edit</a>
+                    <a href="#yourBeats" class="mr-5 -mt-10 hover:text-red-500 cursor-pointer hover:underline">Check your Beats</a>
+
+                </nav>
+            </div>
+        </header>
+    <section class="body-font">
       <div class="container px-5 py-24 mx-auto">
         <div class="flex flex-col text-center w-full mb-20">
           <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Beat Analytics: Keep Track of Your Performance on Your Profile</h1>
@@ -42,7 +51,7 @@
         </div>
       </div>
     </section>
-    <section class="text-red-500">
+    <section id="yourBeats" class="text-red-500">
         <div class="container px-5 py-24 mx-auto">
             <div class="flex flex-col text-center w-full mb-20">
                 <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Your Beats</h1>
@@ -53,7 +62,7 @@
                     <div class="h-full flex items-center border-red-800 border p-4 rounded-lg">
                         <div class="flex-grow">
                             <h2 class="text-white title-font font-medium mb-8 text-xl">Upload a Beat</h2>
-                            <a onclick="openModal()" class="text-red-600 cursor-pointer" >Click here</a>
+                            <a href="{{ route('upload') }}" class="text-red-600 cursor-pointer" >Click here</a>
                             <svg class="h-8 w-8 text-red-600 ml-auto"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 17a5 5 0 01-.916-9.916 5.002 5.002 0 019.832 0A5.002 5.002 0 0116 17m-7-5l3-3m0 0l3 3m-3-3v12"/>
                             </svg>
@@ -154,50 +163,7 @@
             </div>
         </div>
     </section>
-    <style>
-        .animated {
-            -webkit-animation-duration: 1s;
-            animation-duration: 1s;
-            -webkit-animation-fill-mode: both;
-            animation-fill-mode: both;
-        }
-
-        .animated.faster {
-            -webkit-animation-duration: 500ms;
-            animation-duration: 500ms;
-        }
-
-        .fadeIn {
-            -webkit-animation-name: fadeIn;
-            animation-name: fadeIn;
-        }
-
-        .fadeOut {
-            -webkit-animation-name: fadeOut;
-            animation-name: fadeOut;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeOut {
-            from {
-                opacity: 1;
-            }
-
-            to {
-                opacity: 0;
-            }
-        }
-    </style>
-    <div class="main-modal modal-container xl fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster"
+   {{-- <div class="main-modal modal-container xl fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster"
          style="background: rgba(0,0,0,.7);">
         <div class="border border-red-600 modal-container xl bg-black w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
             <div class="modal-content py-4 text-left px-6">
@@ -267,7 +233,7 @@
                 if (event.target == modal) modalClose();
             }
         }
-    </script>
+    </script>--}}
     @endsection
 @include('footer')
 @endsection
