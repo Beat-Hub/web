@@ -29,7 +29,16 @@ class HomeController extends Controller
 
     public function update_profile(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+        $request->validate([
+            'age' => 'numeric|min:5|max:100'
+
+        ]);
+
         $user = User::findOrFail($request->id);
+        $user->email = $request->input('email');
         $user->age = $request->input('age');
         $user->city = $request->input('city');
         $user->school = $request->input('school');

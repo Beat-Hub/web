@@ -31,8 +31,13 @@
                 </div>
                 <div class="mt-20 text-center border-b pb-12">
                     <h1 class="text-4xl font-medium text-red-700">{{ $user->name }}</h1>
-                    <input type="text" class="border-l-2 bg-white bg-opacity-5 border-red-600 pl-2 font-light text-red-600 mt-3 p-1" value="{{ $user->age }}" onclick="this.select()" placeholder="AGE" name="age" />
+                    <label for="email" class="leading-7 text-sm text-white">Email</label>
+                    <input type="email" class="border-l-2 bg-white bg-opacity-5 border-red-600 pl-2 font-light text-red-600 mt-3 p-1" value="{{ $user->email }}" onclick="this.select()" placeholder="example@gmail.com" name="email"/>
+                    <label for="age" class="leading-7 text-sm text-white">Age</label>
+                    <input type="number" class="border-l-2 bg-white bg-opacity-5 border-red-600 pl-2 font-light text-red-600 mt-3 p-1" value="{{ $user->age }}" onclick="this.select()" placeholder="AGE" name="age" />
+                    <label for="text" class="leading-7 text-sm text-white">City</label>
                     <input type="text" class="border-l-2 bg-white bg-opacity-5 border-red-600 pl-2 font-light text-red-600 mt-3 p-1" value="{{ $user->city }}" onclick="this.select()" placeholder="CITY" name="city"/>
+                    <label for="text" class="leading-7 text-sm text-white">School</label>
                     <input type="text" class="border-l-2 bg-white bg-opacity-5 border-red-600 pl-2 font-light text-red-600 mt-3 p-1" value="{{ $user->school }}" onclick="this.select()" placeholder="University of nanash" name="school"/>
                 </div>
                 <div class="mt-12 flex flex-col justify-center">
