@@ -63,7 +63,7 @@
         <div class="p-4 mt-4">
             <div class="p-6">
                 <h2 class="text-2xl font-bold mb-4 text-red-600">Join us today and take your music career to the next level!</h2>
-                <p class="text-lg text-white-700 mb-4">This website is a cutting-edge platform that empowers music producers to showcase and sell their original beats online. With a sleek and intuitive interface, customers can easily search, preview, and purchase a wide variety of high-quality beats. Our platform offers an unprecedented level of transparency and fairness, with <span class="font-bold text-red-600">low commissions</span> that enable music producers to earn more from their work. Whether you're a seasoned professional or just starting out, our platform is the ideal place to discover and connect with a vibrant community of artists and buyers from around the world.</p>
+                <p class="text-lg text-white-700 mb-4"><span class="font-bold text-red-600">BeatHub</span> is a cutting-edge platform that empowers music producers to showcase and sell their original beats online. With a sleek and intuitive interface, customers can easily search, preview, and purchase a wide variety of high-quality beats. Our platform offers an unprecedented level of transparency and fairness, with <span class="font-bold text-red-600">low commissions</span> that enable music producers to earn more from their work. Whether you're a seasoned professional or just starting out, our platform is the ideal place to discover and connect with a vibrant community of artists and buyers from around the world.</p>
             </div>
         </div>
     </div>

@@ -23,8 +23,8 @@
                     </div>
                     <div class="relative">
                         <div class="w-48 h-48 bg-red-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-red-500">
-                            <img src="images/{{$user->image}}?{{time()}}" alt="{{$user->name}}" class="w-full h-full object-cover rounded-full">
-                            <button type="button" class="absolute bottom-0 right-0 -left-2 text-black font-bold text-sm py-4 px-4 border border-black rounded hover:text-red-500" onclick="document.getElementById('imageName').click()">Change picture</button>
+                            <img src="images/{{$user->image}}?" alt="{{$user->name}}" class="w-full h-full object-cover rounded-full">
+                            <button type="button" class="absolute bottom-0 right-0 -left-2 text-black font-bold text-sm py-4 px-4 border border-black hover:bg-black rounded hover:text-red-500" onclick="document.getElementById('imageName').click()">Change picture</button>
                             <input id="imageName" type="file" name="image" style="display:none" onchange="handleImageChange(event)">
                         </div>
                     </div>
