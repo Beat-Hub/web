@@ -32,20 +32,13 @@
                 <div class="mt-20 text-center border-b pb-12">
                     <h1 class="text-4xl font-medium text-red-700">{{ $user->name }}</h1>
                     <label for="email" class="leading-7 text-sm text-white">Email</label>
-                    <input type="email" class="border-l-2 bg-white bg-opacity-5 border-red-600 pl-2 font-light text-red-600 mt-3 p-1" value="{{ $user->email }}" onclick="this.select()" placeholder="example@gmail.com" name="email"/>
+                    <input type="email" class="border-l-2 bg-white bg-opacity-5 border-red-600 pl-2 font-light text-red-600 mt-3 p-1" value="{{ $user->email }}" placeholder="example@gmail.com" name="email"/>
                     <label for="age" class="leading-7 text-sm text-white">Age</label>
-                    <input type="number" class="border-l-2 bg-white bg-opacity-5 border-red-600 pl-2 font-light text-red-600 mt-3 p-1" value="{{ $user->age }}" onclick="this.select()" placeholder="AGE" name="age" />
+                    <input type="number" class="border-l-2 bg-white bg-opacity-5 border-red-600 pl-2 font-light text-red-600 mt-3 p-1" value="{{ $user->age }}" placeholder="AGE" name="age"/>
                     <label for="text" class="leading-7 text-sm text-white">City</label>
-                    <input type="text" class="border-l-2 bg-white bg-opacity-5 border-red-600 pl-2 font-light text-red-600 mt-3 p-1" value="{{ $user->city }}" onclick="this.select()" placeholder="CITY" name="city"/>
+                    <input type="text" class="border-l-2 bg-white bg-opacity-5 border-red-600 pl-2 font-light text-red-600 mt-3 p-1" value="{{ $user->city }}" placeholder="CITY" name="city"/>
                     <label for="text" class="leading-7 text-sm text-white">School</label>
-                    <input type="text" class="border-l-2 bg-white bg-opacity-5 border-red-600 pl-2 font-light text-red-600 mt-3 p-1" value="{{ $user->school }}" onclick="this.select()" placeholder="University of nanash" name="school"/>
-                </div>
-                <div class="mt-12 flex flex-col justify-center">
-                    <p class="text-red-600 text-center font-light lg:px-16">Greetings, my name is {{ $user->name }} and I am a seasoned beatmaker with a passion for producing top-notch tracks. With 5 years of experience using FL Studio, I specialize in creating beats in a variety of genres including trap, pop, and rock.</p>
-                    <button  class="text-red-300 hover:text-red-500 underline py-2 px-4  font-medium mt-4">  Show more</button>
-                </div>
-                <div class=" p-14 space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
-                    <button type="submit" name="submit" class="text-white py-2 px-4 uppercase rounded bg-red-600 hover:bg-red-500 shadow hover:shadow-lg font-medium"> Save</button>
+                    <input type="text" class="border-l-2 bg-white bg-opacity-5 border-red-600 pl-2 font-light text-red-600 mt-3 p-1" value="{{ $user->school }}" placeholder="University of nanash" name="school"/>
                 </div>
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -56,8 +49,15 @@
                         </ul>
                     </div>
                 @endif
+                <div class="mt-12 flex flex-col justify-center">
+                    <p class="text-red-300 hover:text-red-500 text-center py-2 px-4  font-medium -mt-4 mb-4">  Description</p>
+                    <input class=" border-l-2 bg-white  bg-opacity-5 border-red-600 text-red-600 font-light lg:px-16" value="{{ $user->description }}" name="description" onkeyup="countWords(this)"  maxlength="30"/>
+                </div>
+                <div class=" p-14 space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
+                    <button type="submit" name="submit" class="text-white py-2 px-4 uppercase rounded bg-red-600 hover:bg-red-500 shadow hover:shadow-lg font-medium"> Save</button>
+                </div>
             </form>
         </div>
     </div>
-    <script src="{{ asset('js/image_load.js') }}"></script>
+    <script src="{{ asset('js/editProfile.js') }}"></script>
 @endsection

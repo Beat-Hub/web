@@ -42,6 +42,7 @@ class HomeController extends Controller
         $user->age = $request->input('age');
         $user->city = $request->input('city');
         $user->school = $request->input('school');
+        $user->description = $request->input('description');
 
         if ($request->hasFile('image')) {
             $request->validate([
