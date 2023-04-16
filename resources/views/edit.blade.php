@@ -23,7 +23,7 @@
                     </div>
                     <div class="relative">
                         <div class="w-48 h-48 bg-red-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-red-500">
-                            <img src="images/{{$user->image}}?" alt="{{$user->name}}" class="w-full h-full object-cover rounded-full">
+                            <img id="profile-image" src="images/{{$user->image}}?" alt="{{$user->name}}" class="w-full h-full object-cover rounded-full">
                             <button type="button" class="absolute bottom-0 right-0 -left-2 text-black font-bold text-sm py-4 px-4 border border-black hover:bg-black rounded hover:text-red-500" onclick="document.getElementById('imageName').click()">Change picture</button>
                             <input id="imageName" type="file" name="image" style="display:none" onchange="handleImageChange(event)">
                         </div>
@@ -41,7 +41,7 @@
                     <input type="text" class="border-l-2 bg-white bg-opacity-5 border-red-600 pl-2 font-light text-red-600 mt-3 p-1" value="{{ $user->school }}" onclick="this.select()" placeholder="University of nanash" name="school"/>
                 </div>
                 <div class="mt-12 flex flex-col justify-center">
-                    <p class="text-red-600 text-center font-light lg:px-16">Greetings, my name is Rachid and I am a seasoned beatmaker with a passion for producing top-notch tracks. With 5 years of experience using FL Studio, I specialize in creating beats in a variety of genres including trap, pop, and rock.</p>
+                    <p class="text-red-600 text-center font-light lg:px-16">Greetings, my name is {{ $user->name }} and I am a seasoned beatmaker with a passion for producing top-notch tracks. With 5 years of experience using FL Studio, I specialize in creating beats in a variety of genres including trap, pop, and rock.</p>
                     <button  class="text-red-300 hover:text-red-500 underline py-2 px-4  font-medium mt-4">  Show more</button>
                 </div>
                 <div class=" p-14 space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
@@ -59,10 +59,5 @@
             </form>
         </div>
     </div>
-    <script>
-        function handleImageChange(event) {
-            // Trigger the form submission when an image is selected
-            document.getElementById('update-form').submit();
-        }
-    </script>
+    <script src="{{ asset('js/image_load.js') }}"></script>
 @endsection
