@@ -11,8 +11,7 @@ class UploadController extends Controller
 {
     public function index(): View
     {
-        return view('edit');
+        return view('upload');
     }
-
 }
 

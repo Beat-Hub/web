@@ -51,7 +51,7 @@
                 @endif
                 <div class="mt-12 flex flex-col justify-center">
                     <p class="text-red-300 hover:text-red-500 text-center py-2 px-4  font-medium -mt-4 mb-4">  Description</p>
-                    <input class=" border-l-2 bg-white  bg-opacity-5 border-red-600 text-red-600 font-light lg:px-16" value="{{ $user->description }}" name="description" onkeyup="countWords(this)"  maxlength="30"/>
+                    <input class=" border-l-2 bg-white text-center bg-opacity-5 border-red-600 text-red-600 font-light lg:px-16" value="{{ $user->description }}" name="description" onkeyup="countWords(this)"  />
                 </div>
                 <div class=" p-14 space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
                     <button type="submit" name="submit" class="text-white py-2 px-4 uppercase rounded bg-red-600 hover:bg-red-500 shadow hover:shadow-lg font-medium"> Save</button>
