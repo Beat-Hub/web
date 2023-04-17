@@ -22,6 +22,7 @@ return new class extends Migration
             $table->decimal('price_wav', 8, 2)->nullable();
             $table->string('mp3_file')->nullable();;
             $table->string('wav_file')->nullable();;
+            $table->unsignedBigInteger('visit_count')->default(0);
             $table->timestamps();
         });
     }

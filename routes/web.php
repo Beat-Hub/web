@@ -28,7 +28,8 @@ Route::get('/edit', [App\Http\Controllers\UserController::class, 'edit'])->name(
 
 Route::post('/update_profile/{id}', [HomeController::class, 'update_profile'])->name('update_profile');
 
-Route::GET('/upload_beat', [UserController::class, 'upload_beat'])->name('upload_beat');
+Route::get('/upload_beat', [UserController::class, 'upload_beat'])->name('upload_beat');
 
 Route::post('/add_beat', [BeatController::class, 'add_beat'])->name('add_beat');
 
+//Route::get('/index', [BeatController::class, 'index'])->name('index');

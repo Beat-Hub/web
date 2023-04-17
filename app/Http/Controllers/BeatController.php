@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Validator;
 
 class BeatController extends Controller
 {
+    public function index()
+    {
+        $beats = Beat::all();
+        return view('index', compact('beats'));
+    }
+
+
     public function add_beat(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -78,7 +85,9 @@ class BeatController extends Controller
         $beat->user_id = auth()->user()->id;
         $beat->save();
 
-        return redirect()->back()->with('success', 'Beat added successfully');
+        return redirect()->route('upload_beat')->with('success', 'Beat added successfully');
+
     }
+
 
 }
