@@ -4,7 +4,7 @@
     <section class="text-red-400 body-font">
         <div class="container px-44 py-4  mx-auto">
             <div class="flex flex-col text-base w-full mb-20">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Beat Editor</h1>
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Beat Uploader</h1>
                 <h2 class="text-xs text-red-400 tracking-widest font-medium title-font mb-1">Enter beat information</h2>
             </div>
         </div>

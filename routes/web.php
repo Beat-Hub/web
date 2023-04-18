@@ -34,3 +34,9 @@ Route::get('/upload_beat', [UserController::class, 'upload_beat'])->name('upload
 
 Route::post('/add_beat', [BeatController::class, 'add_beat'])->name('add_beat');
 
+Route::get('/beats/edit/{id}', [BeatController::class, 'edit_beat'])->name('edit_beat');
+
+//Route::post('/edit_beat', [BeatController::class, 'edit_beat'])->name('edit_beat');
+
+
+

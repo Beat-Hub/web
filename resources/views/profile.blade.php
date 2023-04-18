@@ -77,21 +77,23 @@
                     <div class="h-full flex items-center border-red-800 border p-4 rounded-lg">
                         <img alt="team" class="w-16 h-16 bg-red-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="/images/{{ $beat->user->image }}">
                         <div class="flex-grow">
-                            <h2 class="text-white title-font font-medium">{{ $beat->beat_name }}</h2>
-                            <p class="text-red-600">{{ $beat->genre}}</p>
+                            <h2 class="text-white title-font capitalize font-medium">{{ $beat->beat_name }}</h2>
+                            <p class="text-red-600 capitalize">{{ $beat->genre}}</p>
+                            <p class="text-red-600 capitalize">{{ $beat->bpm}} BPM</p>
                             <div class="flex justify-end">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke-width="1.5"
-                                    stroke="currentColor"
-                                    class="h-8 w-8 ml-auto inline-block ml-auto text-white transition-all duration-500 hover:text-red-600 cursor-pointer">
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
-                                </svg>
+                                <a href="{{ route('edit_beat', ['id' => $beat->id]) }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="currentColor"
+                                        class="h-8 w-8 ml-auto inline-block  text-white transition-all duration-500 hover:text-red-600 cursor-pointer">
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+                                    </svg>
+                                </a>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
@@ -121,7 +123,7 @@
             <div class="modal-content py-4 text-left px-6">
                 <!--Title-->
                 <div class="flex justify-between items-center pb-3">
-                    <p class="text-2xl font-bold">Upload your Beat</p>
+                    <h3 class="text-2xl font-medium text-center text-red-600 mb-5">Editor</h3>
                     <div class="modal-close cursor-pointer z-50">
                         <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                              viewBox="0 0 18 18">
@@ -132,18 +134,18 @@
                     </div>
                 </div>
                 <!--Body-->
-                <div class="flex flex-wrap -m-2">
+                <div class="flex flex-wrap ">
                     <div class="p-2 w-1/2">
                         <div class="relative">
-                            <label for="name" class="leading-7 text-sm text-white">Beat name</label>
-                            <input type="text" id="title" name="title" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            <label for="email" class="leading-7 text-sm text-white">Beat name</label>
+                            <input type="email" class="border-l-2 bg-white bg-opacity-5 border-red-600 pl-2 font-light text-red-600 mt-3 p-1" value="{{ $beat->beat_name }}" placeholder="example@gmail.com" name="email"/>
+                            <label for="age" class="leading-7 text-sm text-white">BPM</label>
+                            <input type="number" class="border-l-2 bg-white bg-opacity-5 border-red-600 pl-2 font-light text-red-600 mt-3 p-1" value="{{ $beat->bpm }}" placeholder="AGE" name="age"/>
+                            <label for="text" class="leading-7 text-sm text-white">Genre</label>
+                            <input type="number" class="border-l-2 bg-white bg-opacity-10 border-red-600 pl-2 font-light text-red-600 mt-3 p-1 mr-8 mb-5" value="" onclick="this.select()" placeholder="125" name="bpm"/>
                         </div>
                     </div>
                     <div class="p-2 w-full">
-                        <div class="relative">
-                            <label for="message" class="leading-7 text-sm text-white>">Description</label>
-                            <textarea id="description" name="description" class="w-full bg-white bg-opacity-5 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
-                        </div>
                     </div>
                 <!--Footer-->
                 <div class="flex justify-end pt-2">
@@ -155,37 +157,39 @@
             </div>
         </div>
     </div>
-    <script>
-        const modal = document.querySelector('.main-modal');
-        const closeButton = document.querySelectorAll('.modal-close');
+        <script>
+            const modal = document.querySelector('.main-modal');
+            const closeButton = document.querySelectorAll('.modal-close');
+            const openButton = document.querySelector('#open-modal');
 
-        const modalClose = () => {
-            modal.classList.remove('fadeIn');
-            modal.classList.add('fadeOut');
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 500);
-        }
-
-        const openModal = () => {
-            modal.classList.remove('fadeOut');
-            modal.classList.add('fadeIn');
-            modal.style.display = 'flex';
-        }
-
-        for (let i = 0; i < closeButton.length; i++) {
-
-            const elements = closeButton[i];
-
-            elements.onclick = (e) => modalClose();
-
-            modal.style.display = 'none';
-
-            window.onclick = function (event) {
-                if (event.target == modal) modalClose();
+            const modalClose = () => {
+                modal.classList.remove('fadeIn');
+                modal.classList.add('fadeOut');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 500);
             }
-        }
-    </script>--}}
+
+            const openModal = () => {
+                modal.classList.remove('fadeOut');
+                modal.classList.add('fadeIn');
+                modal.style.display = 'flex';
+            }
+
+            for (let i = 0; i < closeButton.length; i++) {
+                const elements = closeButton[i];
+                elements.onclick = (e) => modalClose();
+                modal.style.display = 'none';
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modalClose();
+                    }
+                }
+            }
+
+            openButton.onclick = (e) => openModal();
+
+        </script>--}}
     @endsection
 @include('footer')
 @endsection

@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\CustomException;
 use App\Models\Beat;
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 
 class BeatController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
 
     public function add_beat(Request $request)
@@ -84,6 +90,40 @@ class BeatController extends Controller
         return redirect()->route('upload_beat')->with('success', 'Beat added successfully');
 
     }
+    public function update_beat(Request $request)
+    {
+        $request->validate([
+            'beat_name' => 'required',
+            'bpm' => 'required|numeric|min:0|max:400',
+            'genre' => 'required',
+            'price_mp3' => 'nullable',
+            'price_wav' => 'nullable',
+        ]);
 
+        $beat = Beat::findOrFail($request->id);
+        $beat->beat_name = $request->input('beat_name');
+        $beat->bpm = $request->input('bpm');
+        $beat->genre = $request->input('genre');
+        $beat->price_mp3 = $request->input('price_mp3');
+        $beat->price_wav = $request->input('price_wav');
+
+        $beat->save();
+
+        return redirect()->route('edit_beat');
+    }
+    public function edit_beat($id)
+    {
+        try {
+            $user = auth()->user();
+            $beat = $user->beats()->findOrFail($id);
+
+            // Si el beat existe, carga la vista de edición
+            return view('edit_beat', ['beat' => $beat, 'user' => $user]);
+
+        } catch (ModelNotFoundException $exception) {
+            // Si el beat no se encuentra, lanza una excepción personalizada
+            return response()->view('errors.custom', ['message' => $exception->getMessage()], 500);
+        }
+    }
 
 }
