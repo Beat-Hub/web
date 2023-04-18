@@ -3,17 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Beat;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 
 class BeatController extends Controller
 {
-    public function index()
-    {
-        $beats = Beat::all();
-        return view('index', compact('beats'));
-    }
 
 
     public function add_beat(Request $request)

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Beat;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $beats = Beat::all();
+        $users = User::all();
+        $data = [
+            'beats' => $beats,
+            'users' => $users
+        ];
+        return view('index', $data);
     }
 
     public function update_profile(Request $request)
@@ -33,7 +40,7 @@ class HomeController extends Controller
             'email' => 'required|email'
         ]);
         $request->validate([
-            'age' => 'numeric|min:5|max:100'
+            'age' => 'nullable|numeric|min:5|max:100'
 
         ]);
 

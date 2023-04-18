@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BeatController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\IndexController::class, 'view']);
+//Route::get('/', [\App\Http\Controllers\IndexController::class, 'view']);
+Route::get('/', [IndexController::class, 'index'])->name('index');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -32,4 +34,3 @@ Route::get('/upload_beat', [UserController::class, 'upload_beat'])->name('upload
 
 Route::post('/add_beat', [BeatController::class, 'add_beat'])->name('add_beat');
 
-//Route::get('/index', [BeatController::class, 'index'])->name('index');

@@ -71,12 +71,14 @@
                 </div>
             </div>
             <div class="flex flex-wrap -m-2">
+                @if (isset($beats) && count($beats) > 0)
+                    @foreach ($beats as $beat)
                 <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
                     <div class="h-full flex items-center border-red-800 border p-4 rounded-lg">
-                        <img alt="team" class="w-16 h-16 bg-red-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://dummyimage.com/80x80">
+                        <img alt="team" class="w-16 h-16 bg-red-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="/images/{{ $beat->user->image }}">
                         <div class="flex-grow">
-                            <h2 class="text-white title-font font-medium">Beat 1</h2>
-                            <p class="text-red-600">Trap</p>
+                            <h2 class="text-white title-font font-medium">{{ $beat->beat_name }}</h2>
+                            <p class="text-red-600">{{ $beat->genre}}</p>
                             <div class="flex justify-end">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -106,60 +108,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
-                    <div class="h-full flex items-center border-red-800 border p-4 rounded-lg">
-                        <img alt="team" class="w-16 h-16 bg-red-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://dummyimage.com/84x84">
-                        <div class="flex-grow">
-                            <h2 class="text-white title-font font-medium">Beat 2</h2>
-                            <p class="text-red-600">Pop</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
-                    <div class="h-full flex items-center border-red-800 border p-4 rounded-lg">
-                        <img alt="team" class="w-16 h-16 bg-red-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://dummyimage.com/88x88">
-                        <div class="flex-grow">
-                            <h2 class="text-white title-font font-medium">Beat 3</h2>
-                            <p class="text-red-600">azertyr</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
-                    <div class="h-full flex items-center border-red-800 border p-4 rounded-lg">
-                        <img alt="team" class="w-16 h-16 bg-red-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://dummyimage.com/90x90">
-                        <div class="flex-grow">
-                            <h2 class="text-white title-font font-medium">Beat 4</h2>
-                            <p class="text-red-600">Deazeazes</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
-                    <div class="h-full flex items-center border-red-800 border p-4 rounded-lg">
-                        <img alt="team" class="w-16 h-16 bg-red-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://dummyimage.com/94x94">
-                        <div class="flex-grow">
-                            <h2 class="text-white title-font font-medium">Beat 5</h2>
-                            <p class="text-red-600">sdqdsq</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
-                    <div class="h-full flex items-center border-red-800 border p-4 rounded-lg">
-                        <img alt="team" class="w-16 h-16 bg-red-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://dummyimage.com/98x98">
-                        <div class="flex-grow">
-                            <h2 class="text-white title-font font-medium">beat 6 </h2>
-                            <p class="text-red-600">sdqdsqdqr</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
-                    <div class="h-full flex items-center border-red-800 border p-4 rounded-lg">
-                        <img alt="team" class="w-16 h-16 bg-red-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://dummyimage.com/108x98">
-                        <div class="flex-grow">
-                            <h2 class="text-white title-font font-medium">Beat 7</h2>
-                            <p class="text-red-600">Pqsdqsdr</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+                @else
+                    <h3>You don't have any beats yet.</h3>
+                @endif
             </div>
         </div>
     </section>
