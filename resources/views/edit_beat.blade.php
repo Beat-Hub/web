@@ -8,7 +8,7 @@
                 <h2 class="text-xs text-red-400 tracking-widest font-medium title-font mb-1">Enter beat information</h2>
             </div>
         </div>
-        <form id="update-form" action="{{ route('edit_beat', ['id' => $beat->id]) }}" method="POST" enctype="multipart/form-data">
+        <form id="update-form" action="{{ route('update_beat', ['id' => $beat->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('POST')
             <div class="container px-44 -mt-10 mx-auto">
