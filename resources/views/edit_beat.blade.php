@@ -1,16 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (session('success'))
+        <div id="success-message" class="bg-red-500 text-white font-bold px-2 py-2 rounded-md flex items-center">
+            <svg class="h-6 w-6 fill-current mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
+            </svg>
+            <span>{{ session('success') }}</span>
+            <button id="close-message" class="ml-auto text-white rounded-full bg-red-500 p-2">x
+                <svg class="h-5 w-5 fill-current" viewBox="0 0 20 20">
+                    <path d="M6.4,6.4 L13.6,13.6 M6.4,13.6 L13.6,6.4" />
+                </svg>
+            </button>
+        </div>
+    @endif
     <section class="text-red-400 body-font">
         <div class="container px-44 py-4  mx-auto">
             <div class="flex flex-col text-base w-full mb-20">
                 <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Beat Editor</h1>
                 <h2 class="text-xs text-red-400 tracking-widest font-medium title-font mb-1">Enter beat information</h2>
                 <div class="flex justify-end">
-                    <form method="POST" action="{{ route('delete_beat', $beat->id) }}">
+                    <form method="POST" id="delete-form" action="{{ route('delete_beat', $beat->id) }}">
                         @csrf
                         @method('DELETE')
-                        <button type="submit">
+                        <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal" >
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="4 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 inline-block text-white transition-all duration-500 hover:text-red-600 cursor-pointer">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                 <line x1="5" y1="7" x2="20" y2="7" />
@@ -20,6 +33,25 @@
                                 <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
                             </svg>
                         </button>
+                        <div>
+                            <div id="popup-modal" tabindex="-1" class="fixed z-50 hidden inset-0 bg-black bg-opacity-75 flex items-center justify-center">
+                                <div class="relative bg-black border-2 border-red-600 rounded-lg shadow-lg w-full max-w-md p-6 ">
+                                    <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-hide="popup-modal">
+                                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                        <span class="sr-only">Close modal</span>
+                                    </button>
+                                        <div class="p-6 text-center">
+                                            <svg aria-hidden="true" class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this beat?</h3>
+                                            <button data-modal-hide="popup-modal" type="submit" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                                                Yes, I'm sure
+                                            </button>
+                                            <button data-modal-hide="popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -106,5 +138,28 @@
             beatPriceWAVInput.disabled = !linkCheckboxWAV.checked;
         });
     </script>
+    <script>
+        const modalToggleBtn = document.querySelector('[data-modal-toggle="popup-modal"]');
+        const modal = document.querySelector('#popup-modal');
+        const modalHideBtns = modal.querySelectorAll('[data-modal-hide="popup-modal"]');
+        const confirmBtn = modal.querySelector('[data-confirm-btn]');
+
+        modalToggleBtn.addEventListener('click', function() {
+        modal.classList.toggle('hidden');
+    });
+
+        modalHideBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            modal.classList.add('hidden');
+        });
+    });
+
+        confirmBtn.addEventListener('click', function() {
+        // Aquí puedes enviar la solicitud de eliminación del producto
+        document.querySelector('#delete-form').submit();
+    });
+</script>
+
+<script src="{{ asset('js/closeAlert.js') }}"></script>
 
 @endsection

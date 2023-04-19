@@ -1,12 +1,24 @@
 @extends('layouts.app')
 @section('body')
     @section('content')
+        @if (session('success'))
+            <div id="success-message" class="bg-red-500 text-white font-bold px-2 py-2 mb-6 rounded-md flex items-center">
+                <svg class="h-6 w-6 fill-current mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
+                </svg>
+                <span>{{ session('success') }}</span>
+                <button id="close-message" class="ml-auto text-white rounded-full bg-red-500 p-2">x
+                    <svg class="h-5 w-5 fill-current" viewBox="0 0 20 20">
+                        <path d="M6.4,6.4 L13.6,13.6 M6.4,13.6 L13.6,6.4" />
+                    </svg>
+                </button>
+            </div>
+        @endif
         <header class="text-red-600 body-font">
             <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
                 <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
                     <a href="{{ route('edit') }}" class="mr-5 -mt-10 hover:text-red-500 cursor-pointer hover:underline">Edit</a>
                     <a href="#yourBeats" class="mr-5 -mt-10 hover:text-red-500 cursor-pointer hover:underline">Check your Beats</a>
-
                 </nav>
             </div>
         </header>
@@ -117,79 +129,8 @@
             </div>
         </div>
     </section>
-   {{-- <div class="main-modal modal-container xl fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster"
-         style="background: rgba(0,0,0,.7);">
-        <div class="border border-red-600 modal-container xl bg-black w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
-            <div class="modal-content py-4 text-left px-6">
-                <!--Title-->
-                <div class="flex justify-between items-center pb-3">
-                    <h3 class="text-2xl font-medium text-center text-red-600 mb-5">Editor</h3>
-                    <div class="modal-close cursor-pointer z-50">
-                        <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                             viewBox="0 0 18 18">
-                            <path
-                                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
-                            </path>
-                        </svg>
-                    </div>
-                </div>
-                <!--Body-->
-                <div class="flex flex-wrap ">
-                    <div class="p-2 w-1/2">
-                        <div class="relative">
-                            <label for="email" class="leading-7 text-sm text-white">Beat name</label>
-                            <input type="email" class="border-l-2 bg-white bg-opacity-5 border-red-600 pl-2 font-light text-red-600 mt-3 p-1" value="{{ $beat->beat_name }}" placeholder="example@gmail.com" name="email"/>
-                            <label for="age" class="leading-7 text-sm text-white">BPM</label>
-                            <input type="number" class="border-l-2 bg-white bg-opacity-5 border-red-600 pl-2 font-light text-red-600 mt-3 p-1" value="{{ $beat->bpm }}" placeholder="AGE" name="age"/>
-                            <label for="text" class="leading-7 text-sm text-white">Genre</label>
-                            <input type="number" class="border-l-2 bg-white bg-opacity-10 border-red-600 pl-2 font-light text-red-600 mt-3 p-1 mr-8 mb-5" value="" onclick="this.select()" placeholder="125" name="bpm"/>
-                        </div>
-                    </div>
-                    <div class="p-2 w-full">
-                    </div>
-                <!--Footer-->
-                <div class="flex justify-end pt-2">
-                    <button
-                        class="focus:outline-none modal-close px-4 bg-white p-3 rounded-lg text-black hover:bg-red-200">Cancel</button>
-                    <button
-                        class="focus:outline-none px-4 bg-red-600 p-3 ml-3 rounded-lg text-white hover:bg-red-500">Confirm</button>
-                </div>
-            </div>
-        </div>
-    </div>
-        <script>
-            const modal = document.querySelector('.main-modal');
-            const closeButton = document.querySelectorAll('.modal-close');
-            const openButton = document.querySelector('#open-modal');
+        <script src="{{ asset('js/closeAlert.js') }}"></script>
 
-            const modalClose = () => {
-                modal.classList.remove('fadeIn');
-                modal.classList.add('fadeOut');
-                setTimeout(() => {
-                    modal.style.display = 'none';
-                }, 500);
-            }
-
-            const openModal = () => {
-                modal.classList.remove('fadeOut');
-                modal.classList.add('fadeIn');
-                modal.style.display = 'flex';
-            }
-
-            for (let i = 0; i < closeButton.length; i++) {
-                const elements = closeButton[i];
-                elements.onclick = (e) => modalClose();
-                modal.style.display = 'none';
-                window.onclick = function(event) {
-                    if (event.target == modal) {
-                        modalClose();
-                    }
-                }
-            }
-
-            openButton.onclick = (e) => openModal();
-
-        </script>--}}
     @endsection
 @include('footer')
 @endsection

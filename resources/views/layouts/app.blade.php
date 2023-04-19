@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }} - Upload and share your beats</title>
+    <title>BeatHub - Upload and share your beats</title>
 
     <!-- Styles -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <body>
         <header class="bg-white bg-opacity-5 border-b-2 border-opacity-10 border-white p-6 w-full inline-flex justify-between items-center">
-                <div class="logo text-3xl mx-8">Beat<span class="logo-contrast">Hub</span></div>
+                <div class="logo text-3xl mx-8"><a href="{{ route('home') }}">Beat<span class="logo-contrast">Hub</span></a></div>
             @if(Auth::user())
                 <div>
                      <a href="{{ route('upload_beat') }}">
