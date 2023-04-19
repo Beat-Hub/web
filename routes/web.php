@@ -26,6 +26,8 @@ Route::post('logout', [UserController::class, 'logout'])->name('logout');
 
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profile'])->name('profile');
 
+Route::delete('profile/beats/{id}', [App\Http\Controllers\BeatController::class, 'delete_beat'])->name('delete_beat');
+
 Route::get('/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('edit');
 
 Route::post('/update_profile/{id}', [HomeController::class, 'update_profile'])->name('update_profile');
@@ -36,7 +38,7 @@ Route::post('/add_beat', [BeatController::class, 'add_beat'])->name('add_beat');
 
 Route::get('/beats/edit/{id}', [BeatController::class, 'edit_beat'])->name('edit_beat');
 
-Route::post('/beats/edit/update/{id}', [BeatController::class, 'update_beat'])->name('update_beat');
+Route::post('/beats/edit/update_beat/{id}', [BeatController::class, 'update_beat'])->name('update_beat');
 
-
+Route::delete('/beats/delete/{id}', [BeatController::class, 'delete_beat'])->middleware('auth')->name('delete_beat');
 

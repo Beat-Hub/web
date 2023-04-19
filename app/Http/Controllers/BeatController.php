@@ -7,6 +7,8 @@ use App\Models\Beat;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -39,7 +41,8 @@ class BeatController extends Controller
 
 
         if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();        }
+            return back()->withErrors($validator)->withInput();
+        }
 
         if (!$request->hasFile('mp3_file') && !$request->hasFile('wav_file')) {
             return back()->withErrors(['mp3_file' => 'You must submit at least one MP3 or WAV file.'])->withInput();
@@ -92,13 +95,20 @@ class BeatController extends Controller
     }
     public function update_beat(Request $request)
     {
-        $request->validate([
-            'beat_name' => 'required',
-            'bpm' => 'required|numeric|min:0|max:400',
-            'genre' => 'required',
-            'price_mp3' => 'nullable',
-            'price_wav' => 'nullable',
+        $validator = Validator::make($request->all(), [
+            'beat_name' => 'required|string|max:255',
+            'bpm' => 'required|numeric',
+            'genre' => 'required|string',
+            'price_mp3' => 'nullable|numeric',
+            'price_wav' => 'nullable|numeric',
+        ], [
+            'required' => 'The :attribute field is required.',
+            'numeric' => 'The :attribute must be a number.',
+            'string' => 'The :attribute must be a string.',
         ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
         $beat = Beat::findOrFail($request->id);
         $beat->beat_name = $request->input('beat_name');
@@ -107,9 +117,9 @@ class BeatController extends Controller
         $beat->price_mp3 = $request->input('price_mp3');
         $beat->price_wav = $request->input('price_wav');
 
+        $beat->user_id = auth()->user()->id;
         $beat->save();
-
-        return redirect()->route('edit_beat');
+        return redirect()->route('edit_beat', ['id' => $beat->id])->with('success', 'Beat edited successfully');
     }
     public function edit_beat($id)
     {
@@ -117,13 +127,37 @@ class BeatController extends Controller
             $user = auth()->user();
             $beat = $user->beats()->findOrFail($id);
 
-            // Si el beat existe, carga la vista de edición
+            // Si el beat existe, carga la view para editar
             return view('edit_beat', ['beat' => $beat, 'user' => $user]);
 
         } catch (ModelNotFoundException $exception) {
             // Si el beat no se encuentra, lanza una excepción personalizada
             return response()->view('errors.custom', ['message' => $exception->getMessage()], 500);
         }
+    }
+    public function delete_beat($id)
+    {
+        // Autenticación
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        // Obtener el beat a eliminar
+        $beat = Beat::findOrFail($id);
+
+        // Verificar si el beat pertenece al usuario actual
+        if ($beat->user_id !== Auth::id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        // Eliminar el beat
+        $beat->delete();
+
+        // Registro de actividad
+        activity()->log('Deleted beat ' . $beat->id);
+
+        // Redirigir al usuario con mensaje de éxito
+        return redirect()->route('profile', ['id' => $beat->id])->with('success', 'Beat deleted successfully');
     }
 
 }

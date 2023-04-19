@@ -82,7 +82,7 @@
                             <p class="text-red-600 capitalize">{{ $beat->bpm}} BPM</p>
                             <div class="flex justify-end">
                                 <a href="{{ route('edit_beat', ['id' => $beat->id]) }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                <svg xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke-width="1.5"
