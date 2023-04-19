@@ -9,6 +9,7 @@
 
     <title>BeatHub - Upload and share your beats</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!-- Styles -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])

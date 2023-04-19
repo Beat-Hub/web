@@ -34,8 +34,8 @@
                         </ul>
                     </div>
                 @endif
-
-                <div style="display: flex; flex-direction: column;">
+                    <div id="wait-message" style="display:none;">Please wait, the beat is being uploaded. This may take a few seconds.</div>
+                    <div style="display: flex; flex-direction: column;">
                     <label for="Beat Name" class="leading-7 text-sm text-white text-center">Beat Name</label>
                     <input type="text" class="border-l-2 bg-white bg-opacity-10 border-red-600 pl-2 font-light text-red-600 mt-3 p-1  mb-5" value="" placeholder="Murcia" name="beat_name"/>
                 </div>
@@ -81,10 +81,7 @@
                 </div>
             </div>
             <div class=" p-14 space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
-                <button type="submit" name="submit" class="text-white py-2 px-4 uppercase rounded bg-red-600 hover:bg-red-500 shadow hover:shadow-lg font-medium"> Save</button>
-            </div>
-            <div id="progress-bar" class="w-full h-2 bg-gray-300">
-                <div id="progress" class="h-full bg-red-600"></div>
+                <button type="submit"  name="submit" class="text-white py-2 px-4 uppercase rounded bg-red-600 hover:bg-red-500 shadow hover:shadow-lg font-medium"> Save</button>
             </div>
         </form>
     </section>
@@ -107,6 +104,11 @@
         linkCheckboxWAV.addEventListener('change', () => {
             beatPriceWAVInput.disabled = !linkCheckboxWAV.checked;
             beatFileWAVInput.disabled = !linkCheckboxWAV.checked;
+        });
+    </script>
+    <script>
+        document.addEventListener('submit', function() {
+            document.getElementById('wait-message').style.display = 'block';
         });
     </script>
     <script src="{{ asset('js/closeAlert.js') }}"></script>
