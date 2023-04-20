@@ -19,7 +19,11 @@
                             <div class="mt-4">
                                 <h3 class="text-red-500 uppercase text-xs tracking-widest title-font mb-1">{{ $beat->genre  }}</h3>
                                 <h2 class="text-red-900 title-font capitalize text-lg font-medium">{{ $beat->beat_name }} by {{ $beat->user->name }}</h2>
-                                <p class="mt-1">{{ $beat->price_mp3 }} €</p>
+                                @if(isset($beat->mp3_file))
+                                    {{ $beat->price_mp3 }} €
+                                @elseif(isset($beat->wav_file))
+                                    {{ $beat->price_wav }} €
+                                @endif
                             </div>
                         </div>
                     @endforeach

@@ -100,6 +100,7 @@
                         </div>
                     </div>
                 </div>
+                    @if(!empty($beat->mp3_file))
                     <div class="flex">
                         <div class="mb-3 text-center mr-auto">
                             <label for="beatFileMP3" class="mb-2 inline-block text-white mt-5 text-center">MP3 PRICE</label>
@@ -109,6 +110,8 @@
                                 <input type="number" name="price_mp3" step="any" class="border-l-2 bg-white bg-opacity-10 border-red-600 pl-2 font-light text-red-600 mt-3 p-1 mr-8 mb-5" value="{{ $beat->price_mp3 }}"  onclick="this.select()" placeholder="29.99" id="beatPriceMP3" disabled/>
                             </div>
                         </div>
+                        @endif
+                        @if(!empty($beat->wav_file))
                         <div class="mb-3 text-center">
                             <label for="beatFileWAV" class="mb-2 inline-block text-white mt-5 text-center">WAV PRICE</label>
                             <div class="flex items-center">
@@ -117,6 +120,7 @@
                                 <input type="number" name="price_wav"  step="any" class="border-l-2 bg-white bg-opacity-10 border-red-600 pl-2 font-light text-red-600 mt-3 p-1 mr-8 mb-5"  onclick="this.select()" placeholder="39.99" value="{{ $beat->price_wav }}" id="beatPriceWAV" disabled/>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
             <div class=" p-14 space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
@@ -130,12 +134,29 @@
         const linkCheckboxWAV = document.getElementById('link-checkboxWAV');
         const beatPriceWAVInput = document.getElementById('beatPriceWAV')
 
+        $('#link-checkboxWAV').click(function() {
+            let value = $('#link-checkboxWAV').is(':checked');
+                $( '#beatPriceWAV' ).prop( "disabled", value ? false : true )
+        });
+        $('#link-checkboxMP3').click(function() {
+            let value = $('#link-checkboxMP3').is(':checked');
+            $( '#beatPriceMP3' ).prop( "disabled", value ? false : true )
+        });
         linkCheckboxMP3.addEventListener('change', () => {
-            beatPriceMP3Input.disabled = !linkCheckboxMP3.checked;
+            if (linkCheckboxMP3.checked) {
+                beatPriceMP3Input.disabled = false;
+            } else if (!linkCheckboxMP3.checked) {
+                beatPriceMP3Input.disabled = true;
+            }
         });
 
         linkCheckboxWAV.addEventListener('change', () => {
-            beatPriceWAVInput.disabled = !linkCheckboxWAV.checked;
+            console.log(linkCheckboxWAV.checked)
+            if (linkCheckboxWAV.checked) {
+                beatPriceWAVInput.disabled = false;
+            } else if (!linkCheckboxWAV.checked) {
+                beatPriceWAVInput.disabled = true;
+            }
         });
     </script>
     <script>

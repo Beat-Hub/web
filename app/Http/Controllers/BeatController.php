@@ -114,8 +114,13 @@ class BeatController extends Controller
         $beat->beat_name = $request->input('beat_name');
         $beat->bpm = $request->input('bpm');
         $beat->genre = $request->input('genre');
-        $beat->price_mp3 = $request->input('price_mp3');
-        $beat->price_wav = $request->input('price_wav');
+        if ($request->has('price_mp3')) {
+            $beat->price_mp3 = $request->input('price_mp3');
+        }
+
+        if ($request->has('price_wav')) {
+            $beat->price_wav = $request->input('price_wav');
+        }
 
         $beat->user_id = auth()->user()->id;
         $beat->save();

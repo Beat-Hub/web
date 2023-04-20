@@ -31,7 +31,7 @@ class HomeController extends Controller
             'beats' => $beats,
             'users' => $users
         ];
-        return view('index', $data);
+        return view('home', $data);
     }
 
     public function update_profile(Request $request)
