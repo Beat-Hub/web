@@ -20,10 +20,15 @@ class ProfileController
 
         $user = auth()->user();
         $beats = $user->beats;
+        $mp3_wav_count = $user->countMp3AndWavFiles(); // cuenta el número total de archivos MP3 y WAV del usuario
+
         $data = [
             'beats' => $beats,
-            'user' => $user
+            'user' => $user,
+            'mp3_wav_count' => $mp3_wav_count
+
         ];
         return view('profile', $data);
     }
+
 }

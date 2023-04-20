@@ -48,4 +48,23 @@ class User extends Authenticatable
     public function beats(){
         return $this->hasMany(Beat::class);
     }
+    public function countMp3AndWavFiles()
+    {
+        $beats = $this->beats; // obtiene todos los beats del usuario
+        $mp3_count = 0; // inicializa el contador de archivos MP3 en cero
+        $wav_count = 0; // inicializa el contador de archivos WAV en cero
+
+        foreach ($beats as $beat) {
+            if ($beat->mp3_file) {
+                $mp3_count++;
+            }
+            if ($beat->wav_file) {
+                $wav_count++;
+            }
+        }
+
+        return max($mp3_count, $wav_count); // devuelve el número más grande entre los contadores de archivos MP3 y WAV
+    }
+
+
 }

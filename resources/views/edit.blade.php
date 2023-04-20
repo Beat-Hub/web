@@ -17,7 +17,7 @@
                             <p class="text-red-400">Listeners</p>
                         </div>
                         <div>
-                            <p class="font-bold text-red-700 text-xl">89</p>
+                            <p class="font-bold text-red-700 text-xl">{{$mp3_wav_count}}</p>
                             <p class="text-red-400">Files</p>
                         </div>
                     </div>
