@@ -164,5 +164,17 @@ class BeatController extends Controller
         // Redirigir al usuario con mensaje de éxito
         return redirect()->route('profile', ['id' => $beat->id])->with('success', 'Beat deleted successfully');
     }
+    public function like(Request $request, Beat $beat)
+    {
+        $beat->likes()->syncWithoutDetaching(auth()->user()->id);
+
+        $likeCount = $beat->likes()->count();
+
+        return response()->json([
+            'likes' => $likeCount
+        ]);
+    }
+
+
 
 }

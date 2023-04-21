@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 
 class User extends Authenticatable
 {
@@ -48,6 +50,10 @@ class User extends Authenticatable
     public function beats(){
         return $this->hasMany(Beat::class);
     }
+    public function likes(): BelongsToMany
+    {
+        return $this->belongsToMany(Beat::class, 'likes');
+    }
     public function countMp3AndWavFiles()
     {
         $beats = $this->beats; // obtiene todos los beats del usuario
@@ -65,6 +71,7 @@ class User extends Authenticatable
 
         return max($mp3_count, $wav_count); // devuelve el número más grande entre los contadores de archivos MP3 y WAV
     }
+
 
 
 }

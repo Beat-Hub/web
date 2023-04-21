@@ -40,14 +40,13 @@
                                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                                         <span class="sr-only">Close modal</span>
                                     </button>
-                                        <div class="p-6 text-center">
-                                            <svg aria-hidden="true" class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this beat?</h3>
-                                            <button data-modal-hide="popup-modal" type="submit" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
-                                                Yes, I'm sure
-                                            </button>
-                                            <button data-modal-hide="popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
-                                        </div>
+                                    <div class="p-6 text-center">
+                                        <svg aria-hidden="true" class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this beat?</h3>
+                                        <button data-modal-hide="popup-modal" type="submit" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                                            Yes, I'm sure
+                                        </button>
+                                        <button data-modal-hide="popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
                                     </div>
                                 </div>
                             </div>
@@ -128,58 +127,7 @@
             </div>
         </form>
     </section>
-    <script>
-        const linkCheckboxMP3 = document.getElementById('link-checkboxMP3');
-        const beatPriceMP3Input = document.getElementById('beatPriceMP3')
-        const linkCheckboxWAV = document.getElementById('link-checkboxWAV');
-        const beatPriceWAVInput = document.getElementById('beatPriceWAV')
-
-        $('#link-checkboxWAV').click(function() {
-            let value = $('#link-checkboxWAV').is(':checked');
-                $( '#beatPriceWAV' ).prop( "disabled", value ? false : true )
-        });
-        $('#link-checkboxMP3').click(function() {
-            let value = $('#link-checkboxMP3').is(':checked');
-            $( '#beatPriceMP3' ).prop( "disabled", value ? false : true )
-        });
-        linkCheckboxMP3.addEventListener('change', () => {
-            if (linkCheckboxMP3.checked) {
-                beatPriceMP3Input.disabled = false;
-            } else if (!linkCheckboxMP3.checked) {
-                beatPriceMP3Input.disabled = true;
-            }
-        });
-        linkCheckboxWAV.addEventListener('change', () => {
-            console.log(linkCheckboxWAV.checked)
-            if (linkCheckboxWAV.checked) {
-                beatPriceWAVInput.disabled = false;
-            } else if (!linkCheckboxWAV.checked) {
-                beatPriceWAVInput.disabled = true;
-            }
-        });
-    </script>
-    <script>
-        const modalToggleBtn = document.querySelector('[data-modal-toggle="popup-modal"]');
-        const modal = document.querySelector('#popup-modal');
-        const modalHideBtns = modal.querySelectorAll('[data-modal-hide="popup-modal"]');
-        const confirmBtn = modal.querySelector('[data-confirm-btn]');
-
-        modalToggleBtn.addEventListener('click', function() {
-        modal.classList.toggle('hidden');
-    });
-
-        modalHideBtns.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            modal.classList.add('hidden');
-        });
-    });
-
-        confirmBtn.addEventListener('click', function() {
-        // Aquí puedes enviar la solicitud de eliminación del producto
-        document.querySelector('#delete-form').submit();
-    });
-</script>
-
+<script src="{{ asset('js/checkboxStatus.js') }}"></script>
+<script src="{{ asset('js/modalPopup.js') }}"></script>
 <script src="{{ asset('js/closeAlert.js') }}"></script>
-
 @endsection

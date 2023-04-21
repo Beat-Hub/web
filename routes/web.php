@@ -42,3 +42,4 @@ Route::post('/beats/edit/update_beat/{id}', [BeatController::class, 'update_beat
 
 Route::delete('/beats/delete/{id}', [BeatController::class, 'delete_beat'])->middleware('auth')->name('delete_beat');
 
+Route::post('/beats/{beat}/like', [BeatController::class, 'like'])->name('beats_like');
