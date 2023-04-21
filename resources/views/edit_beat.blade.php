@@ -149,7 +149,6 @@
                 beatPriceMP3Input.disabled = true;
             }
         });
-
         linkCheckboxWAV.addEventListener('change', () => {
             console.log(linkCheckboxWAV.checked)
             if (linkCheckboxWAV.checked) {

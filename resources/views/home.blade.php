@@ -10,11 +10,16 @@
             <div class="container px-5 py-24 mx-auto">
                 <div class="flex flex-wrap -m-4">
                     @foreach ($beats as $beat)
-                        <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                        <div class="lg:w-1/4 md:w-1/2 p-4 w-full relative">
                             <a class="block relative h-48 rounded overflow-hidden">
                                 @foreach ($users as $user)
                                     <img alt="{{ $beat->beat_name }}" class="object-cover object-center w-full h-full block" src="/images/{{ $beat->user->image }}">
                                 @endforeach
+                                <button class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full shadow-lg p-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M8 5v10l6-5z" />
+                                    </svg>
+                                </button>
                             </a>
                             <div class="mt-4">
                                 <h3 class="text-red-500 uppercase text-xs tracking-widest title-font mb-1">{{ $beat->genre  }}</h3>
@@ -28,6 +33,7 @@
                             </div>
                         </div>
                     @endforeach
+
                 </div>
             </div>
         </section>
@@ -60,7 +66,7 @@
                             <svg class="w-4 h-4 text-white" viewBox="0 0 10 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M0.625 1.375C0.625 1.02982 0.904823 0.75 1.25 0.75H2.5C2.84518 0.75 3.125 1.02982 3.125 1.375V12.625C3.125 12.9702 2.84518 13.25 2.5 13.25H1.25C1.08424 13.25 0.925268 13.1842 0.808058 13.0669C0.690848 12.9497 0.625 12.7908 0.625 12.625L0.625 1.375ZM6.875 1.375C6.875 1.02982 7.15482 0.75 7.5 0.75H8.75C8.91576 0.75 9.07473 0.815848 9.19194 0.933058C9.30915 1.05027 9.375 1.20924 9.375 1.375L9.375 12.625C9.375 12.9702 9.09518 13.25 8.75 13.25H7.5C7.15482 13.25 6.875 12.9702 6.875 12.625V1.375Z" fill="currentColor" />
                             </svg>
-                            <span class="sr-only">Pause video</span>
+                            <span class="sr-only">Pause audio</span>
                         </button>
                         <div id="tooltip-pause" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-red-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-red-700">
                             Pause video
