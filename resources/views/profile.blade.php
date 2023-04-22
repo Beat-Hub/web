@@ -74,7 +74,7 @@
                     <div class="h-full flex items-center border-red-800 border p-4 rounded-lg">
                         <div class="flex-grow">
                             <h2 class="text-white title-font font-medium mb-8 text-xl">Upload a Beat</h2>
-                            <a href="{{ route('upload_beat') }}" class="text-red-600 cursor-pointer" >Click here</a>
+                            <a href="{{ route('beats.upload') }}" class="text-red-600 cursor-pointer" >Click here</a>
                             <svg class="h-8 w-8 text-red-600 ml-auto"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 17a5 5 0 01-.916-9.916 5.002 5.002 0 019.832 0A5.002 5.002 0 0116 17m-7-5l3-3m0 0l3 3m-3-3v12"/>
                             </svg>
@@ -87,13 +87,13 @@
                     @foreach ($beats as $beat)
                 <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
                     <div class="h-full flex items-center border-red-800 border p-4 rounded-lg">
-                        <img alt="team" class="w-16 h-16 bg-red-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="/images/{{ $beat->user->image }}">
+                        <img alt="team" class="w-16 h-16 bg-red-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="/storage/images/{{ $beat->user->image }}">
                         <div class="flex-grow">
                             <h2 class="text-white title-font capitalize font-medium">{{ $beat->beat_name }}</h2>
                             <p class="text-red-600 capitalize">{{ $beat->genre}}</p>
                             <p class="text-red-600 capitalize">{{ $beat->bpm}} BPM</p>
                             <div class="flex justify-end">
-                                <a href="{{ route('edit_beat', ['id' => $beat->id]) }}">
+                                <a href="{{ route('beats.edit', ['id' => $beat->id]) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
                                         viewBox="0 0 24 24"

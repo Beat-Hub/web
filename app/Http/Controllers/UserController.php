@@ -39,10 +39,5 @@ class UserController extends Controller
         ];
         return view('edit', $data);
     }
-    public function upload_beat(): \Illuminate\View\View
-    {
-        $user = \auth()->user();
-        return view('upload_beat',['user' =>$user]);
-    }
 
 }

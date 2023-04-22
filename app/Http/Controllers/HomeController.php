@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Beat;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Storage;
+use Str;
 
 class HomeController extends Controller
 {
@@ -25,11 +27,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $beats = Beat::all();
-        $users = User::all();
+        $beats = Beat::limit(10)->get();
+
         $data = [
-            'beats' => $beats,
-            'users' => $users
+            'beats' => $beats
         ];
         return view('home', $data);
     }
@@ -55,9 +56,10 @@ class HomeController extends Controller
             $request->validate([
                 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             ]);
-            $image_name = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images'), $image_name);
-            $path = public_path('images/' . $image_name);
+            $image_name = Str::uuid() . '.' . $request->image->extension();
+
+            $request->image->storeAs('images', $image_name, 'public');
+
             $user->image = $image_name;
         }
 

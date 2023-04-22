@@ -11,40 +11,40 @@
                 <div class="flex flex-wrap -m-4">
                     @foreach ($beats as $beat)
                         <div class="lg:w-1/4 md:w-1/2 p-4 w-full relative">
-                            <a class="block relative h-48 rounded overflow-hidden">
-                                @foreach ($users as $user)
-                                    <img alt="{{ $beat->beat_name }}" class="object-cover object-center w-full h-full block" src="/images/{{ $beat->user->image }}">
-                                @endforeach
-                                <form action="{{ route('beats_like', $beat->id) }}" method="POST">
-                                    @csrf
-                                    <button class="btn-like absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full shadow-lg p-3" data-beat-id="{{ $beat->id }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" viewBox="0 0 20 20" fill="currentColor">
-                                            <path d="M8 5v10l6-5z" />
-                                        </svg>
-                                    </button>
-                                </form>
-                            </a>
-                            <div class="mt-4 relative">
-                                <h3 class="text-red-500 uppercase text-xs tracking-widest title-font mb-1">{{ $beat->genre  }}</h3>
-                                <h2 class="text-red-900 title-font capitalize text-lg font-medium">{{ $beat->beat_name }} by {{ $beat->user->name }}</h2>
-                                @if(isset($beat->mp3_file))
-                                    <audio controls src="{{ asset('storage/mp3_files/' . $beat->mp3_file) }}"></audio>
-                                    {{ $beat->price_mp3 }} €
-                                @elseif(isset($beat->wav_file))
-                                    {{ $beat->price_wav }} €
-                                @endif
-                                <button class="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 focus:outline-none text-red-500 btn-like" data-beat-id="{{ $beat->id }}">
-                                    <i class="fa-regular fa-heart" style="color: #fd0808;"></i>
+                            <div class="block relative h-48 rounded overflow-hidden">
+                                <img alt="{{ $beat->beat_name }}" class="object-cover object-center w-full h-full block" src="/storage/images/{{ $beat->user->image }}">
+
+                                <button class="btn-like absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full shadow-lg p-3" data-beat-id="{{ $beat->id }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M8 5v10l6-5z" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="relative">
+                                <div class="pt-4">
+                                    <h3 class="text-red-500 uppercase text-xs tracking-widest title-font mb-1">{{ $beat->genre  }}</h3>
+                                    <h2 class="text-red-900 title-font capitalize text-lg font-medium">{{ $beat->beat_name }} by {{ $beat->user->name }}</h2>
+                                    @if(isset($beat->mp3_file))
+                                        <audio controls src="{{ asset('storage/mp3_files/' . $beat->mp3_file) }}"></audio>
+                                        {{ $beat->price_mp3 }} €
+                                    @elseif(isset($beat->wav_file))
+                                        {{ $beat->price_wav }} €
+                                    @endif
+                                </div>
+                                <button class="absolute top-2 right-0 focus:outline-none text-red-500 btn-like" data-like-url="{{ route('beats.like', $beat->id) }}" data-beat-id="{{ $beat->id }}">
+                                    <i class="like-heart fa-regular fa-heart @if($beat->hasUserLiked(auth()->user())) fa-solid @endif" style="color: #fd0808;" data-beat-id="{{ $beat->id }}"></i>
+                                    <h5 class="like-counter" data-beat-id="{{ $beat->id }}">{{ $beat->likes()->count() }}</h5>
                                 </button>
                             </div>
                         </div>
+
                     @endforeach
                 </div>
             </div>
         </section>
         <div class="fixed bottom-0 left-0 z-50 grid w-full h-24 grid-cols-1 px-8 bg-white border-t border-red-200 md:grid-cols-3 dark:bg-black dark:border-red-600">
             <div class="items-center justify-center hidden mr-auto text-red-500 dark:text-red-400 md:flex">
-                <img class="h-8 mr-3 rounded" src="/images/{{ $beat->user->image }}" alt="{{ $beat->beat_name }}">
+                <img class="h-8 mr-3 rounded" src=" {{ asset('storage/images/' . $beat->user->image) }}" alt="{{ $beat->beat_name }}">
                 <span class="text-sm">{{$beat->beat_name}}</span>
             </div>
             <div class="flex items-center w-full">
@@ -103,7 +103,6 @@
                 </div>
             </div>
             <div class="items-center justify-center hidden ml-auto md:flex">
-
                 <button data-tooltip-target="tooltip-volume" type="button" class="p-2.5 group rounded-full hover:bg-red-100 focus:outline-none focus:ring-4 focus:ring-red-200 dark:focus:ring-red-600 dark:hover:bg-red-600">
                     <svg class="w-5 h-5 text-red-500 dark:text-red-300 group-hover:text-red-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path clip-rule="evenodd" fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z"></path>
@@ -116,8 +115,10 @@
                 </div>
             </div>
         </div>
-    @endsection
-    @include('footer')
+
     <script src="{{ asset('js/likeSystem.js') }}"></script>
+    @endsection
+
+    @include('footer')
 @endsection
 

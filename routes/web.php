@@ -26,20 +26,17 @@ Route::post('logout', [UserController::class, 'logout'])->name('logout');
 
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profile'])->name('profile');
 
-Route::delete('profile/beats/{id}', [App\Http\Controllers\BeatController::class, 'delete_beat'])->name('delete_beat');
-
 Route::get('/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('edit');
 
 Route::post('/update_profile/{id}', [HomeController::class, 'update_profile'])->name('update_profile');
 
-Route::get('/upload_beat', [UserController::class, 'upload_beat'])->name('upload_beat');
 
-Route::post('/add_beat', [BeatController::class, 'add_beat'])->name('add_beat');
+Route::prefix('/beats/')->middleware('auth')->controller(BeatController::class)->name('beats.')->group(function () {
+    Route::post('/add', 'add_beat')->name('add');
+    Route::get('/upload', 'upload_beat')->name('upload');
 
-Route::get('/beats/edit/{id}', [BeatController::class, 'edit_beat'])->name('edit_beat');
-
-Route::post('/beats/edit/update_beat/{id}', [BeatController::class, 'update_beat'])->name('update_beat');
-
-Route::delete('/beats/delete/{id}', [BeatController::class, 'delete_beat'])->middleware('auth')->name('delete_beat');
-
-Route::post('/beats/{beat}/like', [BeatController::class, 'like'])->name('beats_like');
+    Route::get('/edit/{id}', 'edit_beat')->name('edit');
+    Route::post('/edit/update_beat/{id}', 'update_beat')->name('update');
+    Route::delete('/delete/{id}', 'delete_beat')->name('delete');
+    Route::post('/{beat}/like', 'like')->name('like');
+});

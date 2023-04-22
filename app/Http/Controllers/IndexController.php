@@ -20,11 +20,10 @@ class IndexController extends Controller
     }
     public function index()
     {
-        $beats = Beat::all();
-        $users = User::all();
+        $beats = Beat::limit(10)->get();
+
         $data = [
             'beats' => $beats,
-            'users' => $users
         ];
         return view('index', $data);
     }

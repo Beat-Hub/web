@@ -20,7 +20,7 @@
                 <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Beat Editor</h1>
                 <h2 class="text-xs text-red-400 tracking-widest font-medium title-font mb-1">Enter beat information</h2>
                 <div class="flex justify-end">
-                    <form method="POST" id="delete-form" action="{{ route('delete_beat', $beat->id) }}">
+                    <form method="POST" id="delete-form" action="{{ route('beats.delete', $beat->id) }}">
                         @csrf
                         @method('DELETE')
                         <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal" >
@@ -56,7 +56,7 @@
             </div>
         </div>
 
-        <form method="POST" id="update-form" action="{{ route('update_beat', ['id' => $beat->id]) }}" enctype="multipart/form-data">
+        <form method="POST" id="update-form" action="{{ route('beats.update', ['id' => $beat->id]) }}" enctype="multipart/form-data">
             @csrf
 
             <input type="hidden" name="id" value="{{ $beat->id }}">

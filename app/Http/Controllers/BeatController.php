@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\CustomException;
 use App\Models\Beat;
+use App\Models\Like;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Str;
 
 
 class BeatController extends Controller
@@ -64,8 +66,8 @@ class BeatController extends Controller
                 return redirect()->back()->withErrors($validator)->withInput();
             }
 
-            $mp3_file_name = time() . '_' . $request->file('mp3_file')->getClientOriginalName();
-            $path = $request->file('mp3_file')->storeAs('public/mp3_files', $mp3_file_name);
+            $mp3_file_name = Str::uuid() . '.' . $request->file('mp3_file')->extension();
+            $request->file('mp3_file')->storeAs('mp3_files', $mp3_file_name, 'public');
 
             // Guardo el nombre del archivo en la bdd
             $beat->mp3_file = $mp3_file_name;
@@ -80,8 +82,8 @@ class BeatController extends Controller
                 return redirect()->back()->withErrors($validator)->withInput();
             }
 
-            $wav_file_name = time() . '_' . $request->file('wav_file')->getClientOriginalName();
-            $path = $request->file('wav_file')->storeAs('public/wav_files', $wav_file_name);
+            $wav_file_name = Str::uuid() . '.' . $request->file('wav_file')->extension();
+            $request->file('wav_file')->storeAs('wav_files', $wav_file_name, 'public');
 
             // Guardo el nombre del archivo en la bdd
             $beat->wav_file = $wav_file_name;
@@ -90,9 +92,10 @@ class BeatController extends Controller
         $beat->user_id = auth()->user()->id;
         $beat->save();
 
-        return redirect()->route('upload_beat')->with('success', 'Beat added successfully');
+        return redirect()->route('beats.upload')->with('success', 'Beat added successfully');
 
     }
+
     public function update_beat(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -124,8 +127,9 @@ class BeatController extends Controller
 
         $beat->user_id = auth()->user()->id;
         $beat->save();
-        return redirect()->route('edit_beat', ['id' => $beat->id])->with('success', 'Beat edited successfully');
+        return redirect()->route('beats.edit', ['id' => $beat->id])->with('success', 'Beat edited successfully');
     }
+
     public function edit_beat($id)
     {
         try {
@@ -140,6 +144,7 @@ class BeatController extends Controller
             return response()->view('errors.custom', ['message' => $exception->getMessage()], 500);
         }
     }
+
     public function delete_beat($id)
     {
         // Autenticación
@@ -164,17 +169,33 @@ class BeatController extends Controller
         // Redirigir al usuario con mensaje de éxito
         return redirect()->route('profile', ['id' => $beat->id])->with('success', 'Beat deleted successfully');
     }
+
     public function like(Request $request, Beat $beat)
     {
-        $beat->likes()->syncWithoutDetaching(auth()->user()->id);
+        $alreadyLiked = $beat->hasUserLiked(auth()->user());
 
-        $likeCount = $beat->likes()->count();
+        $likeAdded = false;
+
+        if ($alreadyLiked) {
+            $beat->likes()->whereRelation('user', 'id', auth()->user()->id)->delete();
+        } else {
+            $like = new Like;
+            $like->user()->associate(auth()->user());
+
+            $beat->likes()->save($like);
+            $likeAdded = true;
+        }
 
         return response()->json([
-            'likes' => $likeCount
+            'like_added' => $likeAdded
         ]);
     }
 
+    public function upload_beat(): \Illuminate\View\View
+    {
+        $user = \auth()->user();
+        return view('upload_beat', ['user' => $user]);
+    }
 
 
 }

@@ -22,7 +22,7 @@
                 <div class="logo text-3xl mx-8"><a href="{{ route('home') }}">Beat<span class="logo-contrast">Hub</span></a></div>
             @if(Auth::user())
                 <div>
-                     <a href="{{ route('upload_beat') }}">
+                     <a href="{{ route('beats.upload') }}">
                         <button class="px-6 py-2 font-bold hover:text-red-600">Upload</button>
                      </a>
                    <a href="{{ route('profile') }}">
