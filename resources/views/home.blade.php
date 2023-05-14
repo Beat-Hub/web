@@ -32,7 +32,7 @@
                                     @endif
                                 </div>
                                 <button class="absolute top-2 right-0 focus:outline-none text-red-500 btn-like" data-like-url="{{ route('beats.like', $beat->id) }}" data-beat-id="{{ $beat->id }}">
-                                    <i class="like-heart fa-regular fa-heart @if($beat->hasUserLiked(auth()->user())) fa-solid @endif" style="color: #fd0808;" data-beat-id="{{ $beat->id }}"></i>
+                                    <i class="like-heart fa-regular fa-heart @if(auth()->user() && $beat->hasUserLiked(auth()->user())) fa-solid @endif" style="color: #fd0808;" data-beat-id="{{ $beat->id }}"></i>
                                     <h5 class="like-counter" data-beat-id="{{ $beat->id }}">{{ $beat->likes()->count() }}</h5>
                                 </button>
                             </div>
