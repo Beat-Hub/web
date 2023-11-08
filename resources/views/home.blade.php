@@ -37,7 +37,6 @@
                                 </button>
                             </div>
                         </div>
-
                     @endforeach
                 </div>
             </div>
